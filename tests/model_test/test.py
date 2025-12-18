@@ -4,7 +4,7 @@ import cv2
 
 # === 配置 ===
 MODEL_PATH = "../../models/large_docker_models/yolo_v12_n/yolov12n.pt"        # 替换为你自己的模型路径，如 "models/best.pt"
-INPUT_IMAGE = "picture_test/detection_form.jpg"        # 输入图片路径（可换成 URL 或本地路径）
+INPUT_IMAGE = "../picture_test/detection_form.jpg"        # 输入图片路径（可换成 URL 或本地路径）
 OUTPUT_IMAGE = "output.jpg"      # 输出结果保存路径
 
 # === 加载模型 ===

@@ -1,0 +1,52 @@
+{
+  "detections": [
+    {
+      "bbox": [
+        687,
+        1145,
+        1013,
+        1408
+      ],
+      "confidence": 0.92,
+      "class_id": 4,
+      "label": "pothole"
+    },
+    {
+      "bbox": [
+        0,
+        519,
+        157,
+        580
+      ],
+      "confidence": 0.85,
+      "class_id": 4,
+      "label": "pothole"
+    },
+    {
+      "bbox": [
+        696,
+        618,
+        823,
+        721
+      ],
+      "confidence": 0.83,
+      "class_id": 3,
+      "label": "blind"
+    },
+    {
+      "bbox": [
+        689,
+        712,
+        869,
+        798
+      ],
+      "confidence": 0.83,
+      "class_id": 4,
+      "label": "pothole"
+    }
+  ],
+  "image_size": [
+    1279,
+    1706
+  ]
+}
