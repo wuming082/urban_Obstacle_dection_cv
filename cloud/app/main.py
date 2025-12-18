@@ -11,7 +11,6 @@ async def lifespan(app: FastAPI):
     # Startup
     print("Preloading model...")
     config = get_config()
-    print(f"   Model: {config.model.path} on {config.model.get_device()}")
     print(f"   Server: {config.server.host}:{config.server.port}")
     get_model()  # 触发模型加载
     yield

@@ -34,7 +34,7 @@ class LoggingConfig:
         self.level: str = data.get("level", "INFO")
 
 class Config:
-    def __init__(self, config_path: str = "cloud/config/config.yaml"):
+    def __init__(self, config_path: str = "config/config.yaml"):
         config_file = Path(config_path)
         if not config_file.exists():
             raise FileNotFoundError(f"Config file not found: {config_file}")
