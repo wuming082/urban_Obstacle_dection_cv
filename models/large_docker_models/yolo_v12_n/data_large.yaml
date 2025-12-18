@@ -1,0 +1,6 @@
+# data.yaml
+path: /home/jovyan/workspace/YOLO_DATASET_SPLIT_INCREASE  # ← 相对路径或绝对路径
+train: images/train
+val: images/val
+nc: 5
+names: ['red', 'green', 'crosswalk','blind','pothole']
