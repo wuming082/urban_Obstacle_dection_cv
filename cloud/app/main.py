@@ -34,7 +34,7 @@ import numpy as np
 @app.websocket("/ws/detect")
 async def websocket_detect(websocket: WebSocket):
     await websocket.accept()
-    model = get_model()  # 复用同一个模型实例
+    model = get_model()  # 返回 YOLOv8Wrapper 或 MMDetWrapper
     try:
         while True:
             data = await websocket.receive_bytes()
@@ -43,22 +43,9 @@ async def websocket_detect(websocket: WebSocket):
             if img is None:
                 await websocket.send_json({"error": "Invalid image"})
                 continue
-
-            results = model(img, verbose=False)
-            result = results[0]
-
-            detections = []
-            for box in result.boxes:
-                xyxy = box.xyxy[0].cpu().numpy().astype(int)
-                conf = float(box.conf[0])
-                cls_id = int(box.cls[0])
-                label = model.names[cls_id]
-                detections.append({
-                    "bbox": xyxy.tolist(),
-                    "confidence": round(conf, 2),
-                    "class_id": cls_id,
-                    "label": label
-                })
+            
+            # 统一抽象接口
+            detections = model.predict(img)
 
             await websocket.send_json({"detections": detections})
     except Exception as e:

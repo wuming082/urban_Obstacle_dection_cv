@@ -5,7 +5,18 @@ server:
   reload: false
 
 model:
-  path: "/home/dreamsky/GitStock/urban_Obstacle_dection_cv/models/large_docker_models/yolo_v12_n/yolov12n.pt" # ← 替换为你自己的模型路径
+  # MMDetection 配置
+
+  type: "yolov12" # 或 "mmdet"
+
+  mmdet:
+    config: "/home/dreamsky/GitStock/urban_Obstacle_dection_cv/models/small_edge_models/mobilenet_v2_500e/config.py"
+    checkpoint: "/home/dreamsky/GitStock/urban_Obstacle_dection_cv/models/small_edge_models/mobilenet_v2_500e/epoch_500.pth"
+
+  # yolo系列的配置
+  yolov12:
+    path: "/home/dreamsky/GitStock/urban_Obstacle_dection_cv/models/large_docker_models/yolo_v12_n/yolov12n.pt" # ← 替换为你自己的模型路径
+
   device: "auto" # "auto", "cpu", "cuda", "mps"
   conf_threshold: 0.4 # 置信度阈值
   iou_threshold: 0.5 # NMS IOU 阈值

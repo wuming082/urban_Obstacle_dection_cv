@@ -25,26 +25,20 @@ async def predict_image(file: UploadFile = File(...)):
 
     # 2. 获取单例模型并推理
     model = get_model()
-    results = model(img, verbose=False)
-    result = results[0]
+    detections = model.predict(img)  # 抽象调用
 
-    # 3. 构建检测结果
-    detections = []
-    for box in result.boxes:
-        xyxy = box.xyxy[0].cpu().numpy().astype(int)
-        conf = float(box.conf[0])
-        cls_id = int(box.cls[0])
-        label = model.names[cls_id]
-        detections.append(
-            Detection(
-                bbox=xyxy.tolist(),
-                confidence=round(conf, 2),
-                class_id=cls_id,
-                label=label
-            )
+    # 3. 转换为 Pydantic 模型（detections 已是标准 dict list）
+    detection_objects = [
+        Detection(
+            bbox=det["bbox"],
+            confidence=det["confidence"],
+            class_id=det["class_id"],
+            label=det["label"]
         )
+        for det in detections
+    ]
 
     return PredictionResponse(
-        detections=detections,
+        detections=detection_objects,
         image_size=[w, h]
     )

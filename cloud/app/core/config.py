@@ -6,7 +6,23 @@ import torch
 
 class ModelConfig:
     def __init__(self, data: dict):
-        self.path = data.get("path", "yolov8n.pt")
+        # 主类型（必须）
+        self.type = data.get("type", "yolov12")  # ← 新增 type 字段！
+
+        # YOLO 系列配置（支持 yolov8, yolov12 等）
+        yolov_data = data.get("yolov12")
+        self.yolov12 = type('YOLOConfig', (), {
+            'path': yolov_data.get("path", "yolov12.pt")
+        })
+
+        # MMDetection 配置
+        mmdet_data = data.get("mmdet", {})
+        self.mmdet = type('MMDetConfig', (), {
+            'config': mmdet_data.get("config", ""),
+            'checkpoint': mmdet_data.get("checkpoint", "")
+        })
+
+        # 其他通用参数
         self.device = data.get("device", "auto")
         self.conf_threshold = float(data.get("conf_threshold", 0.4))
         self.iou_threshold = float(data.get("iou_threshold", 0.5))

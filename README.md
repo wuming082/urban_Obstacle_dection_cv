@@ -6,7 +6,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-green)](https://fastapi.tiangolo.com/)
-[![YOLOv8](https://img.shields.io/badge/YOLOv8-Ultralytics-orange)](https://github.com/ultralytics/ultralytics)
+[![YOLOv12](https://img.shields.io/badge/YOLOv8-Ultralytics-orange)](https://github.com/ultralytics/ultralytics)
 [![License](https://img.shields.io/badge/License-MIT-purple)](LICENSE)
 
 ---
@@ -20,7 +20,7 @@
 - ✅ 识别 **斑马线** 与 **交通信号灯**
 
 系统支持两种使用模式：
-- **端侧模式**：在 Jetson Nano / 树莓派等设备上本地运行，无需联网
+- **端侧模式**：在 ESP32S3 / 树莓派等设备上本地运行，无需联网
 - **云端模式**：通过 WebSocket 或 REST API 提供服务，支持多设备接入
 
 ---
