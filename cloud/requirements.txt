@@ -12,5 +12,6 @@ onnxruntime>=1.16.0       # CPU 推理 ONNX 模型（云端 fallback）
 torch>=2.1.0              # GPU/CPU 推理主框架
 torchvision>=0.16.0
 pyyaml>=6.0
-mmcv>=2.0.0
-mmdet>=3.0.0
+openmim==0.3.9
+mmdet==3.3.0
+mmcv==2.1.0
