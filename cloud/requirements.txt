@@ -1,0 +1,14 @@
+# cloud/requirements.txt
+ultralytics>=8.2.0        # YOLOv8 官方库，含训练、验证、导出
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6   # 用于文件上传
+websockets>=12.0
+numpy>=1.24.0
+opencv-python>=4.8.0
+pydantic>=2.5.0
+onnx>=1.15.0              # 用于导出和加载 ONNX
+onnxruntime>=1.16.0       # CPU 推理 ONNX 模型（云端 fallback）
+torch>=2.1.0              # GPU/CPU 推理主框架
+torchvision>=0.16.0
+pyyaml>=6.0

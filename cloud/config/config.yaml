@@ -1,0 +1,14 @@
+# cloud/config/config.yaml
+server:
+  host: "0.0.0.0"
+  port: 8821
+  reload: false
+
+model:
+  path: "/home/dreamsky/GitStock/urban_Obstacle_dection_cv/models/large_docker_models/yolo_v12_n/yolov12n.pt" # ← 替换为你自己的模型路径
+  device: "auto" # "auto", "cpu", "cuda", "mps"
+  conf_threshold: 0.4 # 置信度阈值
+  iou_threshold: 0.5 # NMS IOU 阈值
+
+logging:
+  level: "INFO"
