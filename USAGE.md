@@ -33,17 +33,31 @@ UrbanEye 是一个面向城市公共安全的轻量化障碍物检测系统，�
 
 示例配置：
 ```yaml
+# cloud/config/config.yaml
 server:
   host: "0.0.0.0"
-  port: 8000
-  reload: true
+  port: 8821
+  reload: false
 
 model:
-  path: "models/large_docker_models/yolo_v12_n/yolov12n.pt"
-  confidence_threshold: 0.5
+  # MMDetection 配置
 
-edge:
-  model_path: "models/small_edge_models/mobilenet_v2_500e/epoch_500.pth"
+  type: "yolov12" # 或 "mmdet"
+
+  mmdet:
+    config: "/home/dreamsky/GitStock/urban_Obstacle_dection_cv/models/small_edge_models/mobilenet_v2_500e/config.py"
+    checkpoint: "/home/dreamsky/GitStock/urban_Obstacle_dection_cv/models/small_edge_models/mobilenet_v2_500e/epoch_500.pth"
+
+  # yolo系列的配置
+  yolov12:
+    path: "/home/dreamsky/GitStock/urban_Obstacle_dection_cv/models/large_docker_models/yolo_v12_n/yolov12n.pt" # ← 替换为你自己的模型路径
+
+  device: "auto" # "auto", "cpu", "cuda", "mps"
+  conf_threshold: 0.4 # 置信度阈值
+  iou_threshold: 0.5 # NMS IOU 阈值
+
+logging:
+  level: "INFO"
 ```
 
 ## 使用方法
@@ -56,7 +70,7 @@ edge:
 ```bash
 python run_server.py
 ```
-
+**这一步很重要，因为要先启动server服务器，才能使用后面的测试脚本**
 服务器将在配置的端口启动（默认 8000）。
 
 #### API 使用
@@ -66,12 +80,11 @@ python run_server.py
 
 #### 示例请求
 
-使用 curl 发送图片：
-```bash
-curl -X POST "http://localhost:8000/predict" \
-     -H "Content-Type: multipart/form-data" \
-     -F "file=@path/to/image.jpg"
-```
+使用 python脚本 发送图片：
+`/tests/request_test/picture_request_test.py`
+
+使用时，在命令行内使用`python picture_request_test.py `以启动脚本 
+**tips：需要在当前**`test/request_test/` **目录下才能正常运行该脚本**
 
 ### 边缘模式
 
